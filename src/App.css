@@ -1,38 +1,162 @@
-.App {
-  text-align: center;
+html , body, #root,.App{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'roboto'
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.map {
+  height: 100%;
+}
+.wrapper {
+  height: 100%;
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.list{
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  z-index: 99;
+/* From https://css.glass */
+  background: rgba(255, 255, 255, 0.23);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);  padding: 10px 30px ;
+  height: 95vh;
+  overflow-y: scroll;
 }
+.header{
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  gap: 20px;
+  z-index: 99;
+  width: 500px;
+  justify-content: center;
+}
+.list-header{
+  font-size: 15px;
+  font-weight: bold;
+  width: 80px;
+  
+}
+.items{
+  display: grid;
+  grid-template-columns: repeat(5, 80px);
+  grid-template-rows: auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 0px;
+  height: 45px;
+  width: 500px;
+  margin-top: 5px;
+}
+.list-item{
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  justify-content: flex-start;
+}
+.pill{
+  background-color: orange;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  justify-self: center;
+  
+
+}
+
+.clientLogo{
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.logo{
+  max-width: 80%;
+  max-height: 45px;  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.consulta{
+  justify-self: center;
 }
+.icon{
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 200px;
+}
+
+.loading-page{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0A0826;
+}
+
+.hoverInfo{
+  display: flex;
+}
+
+.hoverDivLogo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+max-width: 100px;
+  background: rgba(255, 255, 255, 0.23);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);  
+  padding: 5px 10px ; 
+}
+
+.hoverLogo{
+  max-width: 80%;
+  max-height: 45px;  
+}
+
+.show-popup{
+  display: flex;
+}
+.hide-popup{
+  display: none;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* background: #f1f1f1;  */
+  background-color: transparent;
+
+
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+
