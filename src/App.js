@@ -18,14 +18,18 @@ export default function App() {
 
     useEffect(()=>{
       const getData = async ()=>{
-           await axios.get('http://server.palmapp.com.br:8082/rest/PALM/v1/AppClientesPalm?Token=4c3ss044p1p4lm_c0n5ult4_3mpr3s4s')
-          .then(function(res){
-            let replacedStr = res.data.slice(1, -1);
+        
+          const response = await fetch('http://server.palmapp.com.br:8082/rest/PALM/v1/AppClientesPalm?Token=4c3ss044p1p4lm_c0n5ult4_3mpr3s4s')
+          .then(function(response) {
+            return response.text();
+          }).then(function(data) {
+            let replacedStr = data.slice(1, -1);
             let result = "[" + replacedStr + "]";
             setData(JSON.parse(result))
             console.log('actualizo los datos')
+
           }).catch(function(err){
-              console.log(err)
+              console.log('error',err)
           })
         }
 
@@ -34,14 +38,12 @@ export default function App() {
         console.log("Triggered every 1 minute!");
         setRefetching(true)
         getData()  
-        console.log('vvvvvvvvvvvvvv')
       }, 60000); 
       
       return () => clearInterval(interval);
     },[])
   useEffect(() => {
     if (data.length>0){
-      console.log('zzzzzzzz')
         if (alias.length===0 ||loaded){
           const promises = data.map(url => {
             let getURL = ''
@@ -54,9 +56,7 @@ export default function App() {
             return fetch(getURL)
               .then(response => response)
               .catch(error => {
-                // Handle any error that occurred during the HTTP request
-                // console.error(`Error fetching ${url}:`, error);
-                // throw error;
+                  console.log(error)
               });
           });
           Promise.all(promises)
