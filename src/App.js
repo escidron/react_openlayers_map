@@ -1,10 +1,10 @@
-import React,{useEffect,useState,useRef} from "react";
+import React,{useEffect,useState} from "react";
 import axios from 'axios'
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
 import "ol/ol.css";
 import './App.css'
-import { RMap, ROSM, RLayerVector, RFeature, RStyle,ROverlay,RPopup } from "rlayers";
+import { RMap, ROSM, RLayerVector, RFeature,ROverlay } from "rlayers";
 import greenIcon from '../src/public/greenIcon.png'
 import redIcon from '../src/public/redIcon.gif'
 import { FadeLoader } from "react-spinners";
@@ -84,7 +84,7 @@ export default function App() {
             });
         }
     }
-
+// eslint-disable-next-line
 }, [data]);
 
     return (
