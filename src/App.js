@@ -1,202 +1,218 @@
-import React,{useEffect,useState} from "react";
-import axios from 'axios'
+import React, { useEffect, useState, useRef } from "react";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
 import "ol/ol.css";
-import './App.css'
-import { RMap, ROSM, RLayerVector, RFeature,ROverlay } from "rlayers";
-import greenIcon from '../src/public/greenIcon.png'
-import redIcon from '../src/public/redIcon.gif'
+import "./App.css";
+import { RMap, ROSM, RLayerVector, RFeature, ROverlay } from "rlayers";
+import greenIcon from "../src/public/greenIcon.png";
+import redIcon from "../src/public/redIcon.gif";
 import { FadeLoader } from "react-spinners";
+import nouser from "./assets/user1.png";
+// import './public/data.json'
+
 export default function App() {
-    const [data, setData] = useState([]);
-    const [alias, setAlias] = useState([]);
-    const [loaded, setLoaded] = useState(false);
-    const [refetching, setRefetching] = useState(false);
-    const [hover, setHover] = useState('');
+  const [data, setData] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  const [refetching, setRefetching] = useState(false);
+  const [lastRequest, setLastRequest] = useState("");
 
 
-    useEffect(()=>{
-      const getData = async ()=>{
-        
-          const response = await fetch('http://server.palmapp.com.br:8082/rest/PALM/v1/AppClientesPalm?Token=4c3ss044p1p4lm_c0n5ult4_3mpr3s4s')
-          .then(function(response) {
-            return response.text();
-          }).then(function(data) {
-            let replacedStr = data.slice(1, -1);
-            let result = "[" + replacedStr + "]";
-            setData(JSON.parse(result))
-            console.log('actualizo los datos')
 
-          }).catch(function(err){
-              console.log('error',err)
-          })
-        }
 
-      getData()  
-      const interval = setInterval(() => {
-        console.log("Triggered every 1 minute!");
-        setRefetching(true)
-        getData()  
-      }, 60000); 
-      
-      return () => clearInterval(interval);
-    },[])
+  const fetchData = () => {
+    fetch("./data.json")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const groupedUsers = data.data.reduce((groups, user) => {
+          const key = `${user.latitude}-${user.longitude}`;
+          if (!groups[key]) {
+            groups[key] = [];
+          }
+          groups[key].push(user);
+          return groups;
+        }, {});
+
+        // Convert the grouped data into an array of arrays
+        const groupedUsersArray = Object.values(groupedUsers);
+
+        setData(groupedUsersArray);
+        setLoaded(true);
+      })
+      .catch((error) => {
+        console.log("error loading json: ", error);
+      });
+  };
+
   useEffect(() => {
-    if (data.length>0){
-        if (alias.length===0 ||loaded){
-          const promises = data.map(url => {
-            let getURL = ''
+    fetchData(); // Chama a função imediatamente ao montar o componente
 
-            if(url.ENDPOINT.includes('http://')){
-              getURL = url.ENDPOINT
-            }else{
-              getURL = 'http://'+url.ENDPOINT
-            }
-            return fetch(getURL)
-              .then(response => response)
-              .catch(error => {
-                  console.log(error)
-              });
-          });
-          Promise.all(promises)
-            .then(results => {
-              // Handle the resolved values (responses) from all promises
-              console.log('All requests completed:', results);
-              var statusAlias = []
-              if(!loaded || refetching ){
+    const intervalId = setInterval(() => {
+      fetchData(); // Chama a função a cada 5 minutos (300000 milissegundos)
+    }, 300000); // 300000 milissegundos = 5 minutos
 
-                results.map((item)=>{
-                  if(item!==undefined){
-                    statusAlias.push({url:item.url})
-                  }
-                  return null
-                })
-                setAlias(statusAlias)
-                setLoaded(true)
-                console.log('atualizou status')
-                // setRefetching(false)
-              }
-            })
-            .catch(error => {
-              // Handle any error that occurred during Promise.all()
-              console.error('Error with Promise.all():', error);
-            });
-        }
-    }
-// eslint-disable-next-line
-}, [data]);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
-    return (
-      <div className="wrapper">
-        {loaded?
+  return (
+    <div className="wrapper">
+      {loaded ? (
         <RMap
           className="map"
-          initial={{ center: fromLonLat([-32.1124, -16.1793]), zoom: 5 }}
+          initial={{ center: fromLonLat([-46.6388, -22.9089]), zoom: 9 }}
         >
-        <ROSM />
-        <div className="list">
-          <div className="header">
-            <p className="list-header">Status</p>
-            <p className="list-header">Cliente</p>
-            <p className="list-header">Alias</p>
-            <p className="list-header">Ult.Consulta</p>
-            <p className="list-header">Transações</p>
-          </div>
-        {data.map((item,index) => {
-          const currentTime = new Date();
-          const hours = currentTime.getHours();
-          const minutes = currentTime.getMinutes().length===1?'0'+currentTime.getMinutes():currentTime.getMinutes();
-          const seconds = currentTime.getSeconds().length===1?'0'+currentTime.getSeconds():currentTime.getSeconds();
-          let getURL = ''
-          let icon  = ''
-          if(item.ENDPOINT.includes('http://')){
-              getURL = item.ENDPOINT
-          }else{
-              getURL = 'http://'+item.ENDPOINT
-          }
-          const foundElement = alias.find(item => item.url === getURL);
+          <ROSM />
+          {data.map((item, index) => {
+            console.log("itemm", item[0]);
+            console.log("itemm length", item.length);
+            console.log("index", index);
+            return (
+              <>
+                {item.length === 1 ? (
+                  <div key={index + item[0].name}>
+                    <RLayerVector zIndex={10}>
+                      <RFeature
+                        geometry={
+                          new Point(
+                            fromLonLat([item[0].longitude, item[0].latitude])
+                          )
+                        }
+                        onClick={(e) =>
+                          e.map
+                            .getView()
+                            .fit(e.target.getGeometry().getExtent(), {
+                              duration: 250,
+                              maxZoom: 10,
+                            })
+                        }
+                      >
+                        <ROverlay>
+                          <div
+                            className={`speech-bubble speech-bubble-${index}`}
+                            style={{
+                              backgroundColor: item[0].cor,
+                            }}
+                            key={index}
+                          >
+                            <style key={index}>
+                              {`
+                            .speech-bubble-${index}::after {
+                              border-top-color: ${
+                                item[0].cor || "#ff0000"
+                              }; // Padrão ou personalizado
+                            }
+                          `}
+                            </style>
+                            <div className="user-info">
+                              <img
+                                className="user-image"
+                                src={item[0].foto ? item[0].foto : nouser}
+                                alt="fireSpot"
+                              />
+                              <p className="user-name">{item[0].nome}</p>
+                              <p className="user-name">{`[${item[0].hora_inicio} - ${item[0].hora_fim}]`}</p>
+                            </div>
+                            <img
+                              className="client-image"
+                              src={item[0].logo ? item[0].logo : nouser}
+                              alt="fireSpot"
+                            />
+                          </div>
+                        </ROverlay>
+                      </RFeature>
+                    </RLayerVector>
+                  </div>
+                ) : (
+                  //varios funcionarios no mesmo local
+                  <div key={index}>
+                    <RLayerVector zIndex={10}>
+                      <RFeature
+                        geometry={
+                          new Point(
+                            fromLonLat([item[0].longitude, item[0].latitude])
+                          )
+                        }
+                        onClick={(e) =>
+                          e.map
+                            .getView()
+                            .fit(e.target.getGeometry().getExtent(), {
+                              duration: 250,
+                              maxZoom: 10,
+                            })
+                        }
+                      >
+                        <ROverlay>
+                          <div
+                            className={`speech-bubble-group speech-bubble-group-${index}`}
+                            style={{
+                              backgroundColor: item[0].cor,
+                            }}
+                            key={index}
+                          >
+                            <style key={index}>
+                              {`
+                          .speech-bubble-group-${index}::after {
+                            border-top-color: ${
+                              item[0].cor || "#ff0000"
+                            }; // Padrão ou personalizado
+                          }
+                        `}
+                            </style>
+                            <div className="group-container">
+                              {item.map((element,index2) => {
+                                console.log("element", element);
+                                console.log("element", element.logo);
+                                console.log("index2", index2);
+                                return (
+                                  <div
+                                    className="group-user-info"
+                                    key={element.id}
+                                  >
+                                    <div className="user-info">
+                                      <img
+                                        className="user-image"
+                                        src={
+                                          element.foto ? element.foto : nouser
+                                        }
+                                        alt="fireSpot"
+                                      />
+                                      <p className="user-name">
+                                        {element.nome}
+                                      </p>
+                                      <p className="user-name">{`[${element.hora_inicio} - ${element.hora_fim}]`}</p>
+                                    </div>
+                                    {
+                                      index2 === 0 && (
 
-          if (foundElement !== undefined) {
-            icon =greenIcon
-          } else {
-            icon = redIcon
-          }
-          return(
-            
-            <div  key={item.ALIAS}>
-
-                <RLayerVector zIndex={10}  >
-                  <RFeature
-                    
-                    
-                    geometry={new Point(fromLonLat([item.LONGITUDE,item.LATITUDE]))}
-                    onClick={(e) =>
-                      e.map.getView().fit(e.target.getGeometry().getExtent(), {
-                        duration: 250,
-                        maxZoom: 10,
-                      })
-
-                    }
-                    >
-                    <ROverlay className='no-interaction' >
-                      <img 
-                          onMouseOver={()=>{                           
-                                console.log(item.ALIAS)                          
-                                setHover(item.ALIAS)
-                                }}
-                          onMouseOut={()=>setHover('')}
-                          className='feature'
-                          src= { icon}
-                          style={{
-                            position: 'relative',
-                            top: -15,
-                            left: -15,
-
-                        }}
-                          width={25}
-                          height={25}
-                          alt='animated icon'
-                      />
-                    </ROverlay>
-                    
-                      <ROverlay className={` ${hover===item.ALIAS?'show-popup ':'hide-popup'}`}>
-                      <div className='hoverDivLogo'>
-                        <img className="hoverLogo"  src={item.URLLOGO}  alt="fireSpot"/>
-                      </div>
-                      </ROverlay>
-                    
-                  </RFeature>
-                </RLayerVector>   
-              <div className="items">             
-                
-                <div className='clientLogo'>
-                  <img className="status"  
-                  src={icon}  
-                  alt="status"/>
-                </div>
-                
-                <div className='clientLogo'>
-                  <img className="logo"  src={item.URLLOGO}  alt="fireSpot"/>
-                </div>
-                <p className="list-item">{item.ALIAS}</p>
-                <p className="list-item consulta">{`${hours}:${minutes}:${seconds}`}</p>
-                <p className="list-item pill">{item.TRANSACOES}</p>
-              </div>  
-            </div>
-          )
-        })
-        
-      }
-        </div> 
+                                        <img
+                                          className="client-image"
+                                          src={element.logo ? element.logo : nouser}
+                                          alt="fireSpot"
+                                        />
+                                      )
+                                    }
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </ROverlay>
+                      </RFeature>
+                    </RLayerVector>
+                  </div>
+                )}
+              </>
+            );
+          })}
         </RMap>
-        :(
-          <div className="loading-page"> 
-            <FadeLoader color="#36d7b7" />
-          </div>
-        )
-        }
-      </div> 
-
-    );
+      ) : (
+        <div className="loading-page">
+          <FadeLoader color="#36d7b7" />
+        </div>
+      )}
+    </div>
+  );
 }

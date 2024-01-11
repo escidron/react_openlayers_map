@@ -1,0 +1,305 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "cor": "#9997be",
+            "nome": "Anne Zanni",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.42764",
+            "longitude": "-46.37535"
+          },
+          {
+            "id": 2,
+            "cor": "#86a786",
+            "nome": "Anderson Zanni",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.22780",
+            "longitude": "-46.37535"
+          },
+          {
+            "id": 3,
+            "cor": "#999999",
+            "nome": "Eduardo Sanchez",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-20.42764",
+            "longitude": "-60.37535"
+          },
+          {
+            "id": 4,
+            "cor": "#aabbcc",
+            "nome": "User 1",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.81042",
+            "longitude": "-46.63472"
+          },
+          {
+            "id": 5,
+            "cor": "#ddccaa",
+            "nome": "User 2",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.54975",
+            "longitude": "-46.84128"
+          },
+          {
+            "id": 6,
+            "cor": "#ff99bb",
+            "nome": "User 3",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.51261",
+            "longitude": "-46.71149"
+          },
+          {
+            "id": 7,
+            "cor": "#abcdef",
+            "nome": "User 4",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.41471",
+            "longitude": "-46.71766"
+          },
+          {
+            "id": 8,
+            "cor": "#eeffee",
+            "nome": "User 5",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.47351",
+            "longitude": "-46.79317"
+          },
+          {
+            "id": 9,
+            "cor": "#ffaacc",
+            "nome": "User 6",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.72351",
+            "longitude": "-46.96317"
+          },
+          {
+            "id": 10,
+            "cor": "#55ccdd",
+            "nome": "User 7",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.83913",
+            "longitude": "-46.66504"
+          },
+          {
+            "id": 11,
+            "cor": "#ff6633",
+            "nome": "User 8",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.55052",
+            "longitude": "-46.65293"
+          },
+          {
+            "id": 12,
+            "cor": "#0099cc",
+            "nome": "User 9",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.49851",
+            "longitude": "-46.61255"
+          },
+          {
+            "id": 13,
+            "cor": "#993366",
+            "nome": "User 10",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.61827",
+            "longitude": "-46.71668"
+          },
+          {
+            "id": 14,
+            "cor": "#66aa22",
+            "nome": "User 11",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.69465",
+            "longitude": "-46.58291"
+          },
+          {
+            "id": 15,
+            "cor": "#cc6633",
+            "nome": "User 12",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.58977",
+            "longitude": "-46.77348"
+          },
+          {
+            "id": 16,
+            "cor": "#aabbff",
+            "nome": "User 13",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.66007",
+            "longitude": "-46.61195"
+          },
+          {
+            "id": 17,
+            "cor": "#ffcc22",
+            "nome": "User 14",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.65154",
+            "longitude": "-46.77698"
+          },
+          {
+            "id": 18,
+            "cor": "#55aa99",
+            "nome": "User 15",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.56209",
+            "longitude": "-46.68711"
+          },
+          {
+            "id": 19,
+            "cor": "#ffeebb",
+            "nome": "User 16",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.71298",
+            "longitude": "-46.63261"
+          },
+          {
+            "id": 20,
+            "cor": "#99cc11",
+            "nome": "User 17",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.60267",
+            "longitude": "-46.75884"
+          },
+          {
+            "id": 21,
+            "cor": "#ff9988",
+            "nome": "User 18",
+            "foto": "",
+            "hora_inicio": "09:00",
+            "hora_fim": "14:00",
+            "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+            "latitude": "-23.68719",
+            "longitude": "-46.69498"
+          },
+      {
+        "id": 22,
+        "cor": "#aabbcc",
+        "nome": "User 19",
+        "foto": "",
+        "hora_inicio": "09:00",
+        "hora_fim": "14:00",
+        "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+        "latitude": "-23.63475",
+        "longitude": "-46.67414"
+      },
+      {
+        "id": 23,
+        "cor": "#dd99ff",
+        "nome": "User 22",
+        "foto": "",
+        "hora_inicio": "09:00",
+        "hora_fim": "14:00",
+        "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+        "latitude": "-23.63475",
+        "longitude": "-46.67414"
+      }
+      ,
+      {
+        "id": 24,
+        "cor": "#dd99ff",
+        "nome": "User 23",
+        "foto": "",
+        "hora_inicio": "09:00",
+        "hora_fim": "14:00",
+        "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+        "latitude": "-23.63475",
+        "longitude": "-46.67414"
+      }
+      ,
+      {
+        "id": 25,
+        "cor": "#dd99ff",
+        "nome": "User 23",
+        "foto": "",
+        "hora_inicio": "09:00",
+        "hora_fim": "14:00",
+        "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+        "latitude": "-23.63475",
+        "longitude": "-46.67414"
+      },
+      {
+        "id": 26,
+        "cor": "#dd99ff",
+        "nome": "User 23",
+        "foto": "",
+        "hora_inicio": "09:00",
+        "hora_fim": "14:00",
+        "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+        "latitude": "-23.63475",
+        "longitude": "-46.67414"
+      }
+      ,
+      {
+        "id": 27,
+        "cor": "#dd99ff",
+        "nome": "User 23",
+        "foto": "",
+        "hora_inicio": "09:00",
+        "hora_fim": "14:00",
+        "logo": "http://server.palmapp.com.br:8090/imagens/meliora/logomeliora.png",
+        "latitude": "-23.63475",
+        "longitude": "-46.67414"
+      }
+    ]
+  }
+  
